@@ -1,6 +1,6 @@
 <?php
 //Crea un programa que analice la frase:
-$texto = "PHP no está muerto… solo sigue trabajando silenciosamente en el 80% de Internet Internet Internet PHP";
+$texto = "PHP no está muerto… solo sigue trabajando silenciosamente en el 80% de Internet";
 
 //1.Convertir el texto a minúsculas.
 $textoMinusculas = mb_strtolower($texto);
@@ -31,4 +31,23 @@ echo "Las palabras que se repiten más de una vez son: " . implode(", ", $masUna
 echo "------------------------" . PHP_EOL;
 
 //5.Mostrar la palabra más repetida.
-print_r(arsort($contadorDePalabras));
+$cantidadMasRepetida = 1;
+$palabraMasRepetida = "";
+foreach ($contadorDePalabras as $palabra => $cantidad) {
+  if ($cantidad > $cantidadMasRepetida) {
+    $cantidadMasRepetida = $cantidad;
+    $palabraMasRepetida = $palabra;
+  }
+}
+echo "La palabra más repetida es: " . $palabraMasRepetida . PHP_EOL;
+echo "------------------------" . PHP_EOL;
+
+//6.Ignora palabras de menos de 3 letras.
+$palabrasFiltradas = [];
+foreach ($textoArray as $palabra) {
+  if (mb_strlen($palabra) >= 3) {
+    $palabrasFiltradas[] = $palabra;
+  }
+}
+echo "La frase filtrada sería: " . implode(" ",$palabrasFiltradas) . PHP_EOL;
+echo "------------------------" . PHP_EOL;
